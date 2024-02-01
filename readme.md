@@ -1,8 +1,15 @@
 ### How to run locally?
 
+- Make sure you have the done the environment setup https://capacitorjs.com/docs/getting-started/environment-setup
 - Install dependencies: `npm i`
-- Start developement server `ionic serve`
-- `npm run build`
-- `npx cap sync`
-- `npx cap run android`
-- `npx cap run ios`
+- Run on web: `ionic serve`
+- Run on android simulator: `npx cap run android`
+- Run on ios simulator: `npx cap run ios`
+
+### Run unit test
+
+- `npm run test.unit`
+
+### Run e2e test
+
+- `npm run test.e2e`
