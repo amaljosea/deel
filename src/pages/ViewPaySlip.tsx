@@ -2,23 +2,19 @@ import { useState } from "react";
 import { PaySlip, getPaySlip } from "../data/paySlip";
 import {
   IonBackButton,
+  IonButton,
   IonButtons,
   IonContent,
   IonHeader,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonNote,
   IonPage,
   IonToolbar,
   useIonViewWillEnter,
 } from "@ionic/react";
-import { personCircle } from "ionicons/icons";
 import { useParams } from "react-router";
 import "./ViewPaySlip.css";
 
 function ViewPaySlip() {
-  const [payslip, setPaySlip] = useState<PaySlip>();
+  const [paySlip, setPaySlip] = useState<PaySlip>();
   const params = useParams<{ id: string }>();
 
   useIonViewWillEnter(() => {
@@ -31,45 +27,19 @@ function ViewPaySlip() {
       <IonHeader translucent>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton text="Inbox" defaultHref="/home"></IonBackButton>
+            <IonBackButton text="Pay Slips" defaultHref="/home"></IonBackButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
 
       <IonContent fullscreen>
-        {payslip ? (
+        {paySlip ? (
           <>
-            <IonItem>
-              <IonIcon
-                aria-hidden="true"
-                icon={personCircle}
-                color="primary"
-              ></IonIcon>
-              <IonLabel className="ion-text-wrap">
-                <h2>
-                  {payslip.fromName}
-                  <span className="date">
-                    <IonNote>{payslip.date}</IonNote>
-                  </span>
-                </h2>
-                <h3>
-                  To: <IonNote>Me</IonNote>
-                </h3>
-              </IonLabel>
-            </IonItem>
-
-            <div className="ion-padding">
-              <h1>{payslip.subject}</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </div>
+            <p>{paySlip.fromDate}</p>
+            <p>{paySlip.toDate}</p>
+            <p>{paySlip.file}</p>
+            <p>{paySlip.id}</p>
+            <IonButton>Download Payslip</IonButton>
           </>
         ) : (
           <div>PaySlip not found</div>

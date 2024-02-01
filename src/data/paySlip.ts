@@ -1,58 +1,100 @@
 export interface PaySlip {
-  fromName: string;
-  subject: string;
-  date: string;
+  fromDate: string;
+  toDate: string;
+  file: string;
   id: number;
 }
 
 const paySlips: PaySlip[] = [
   {
-    fromName: "Matt Chorsey",
-    subject: "New event: Trip to Vegas",
-    date: "9:32 AM",
-    id: 0,
-  },
-  {
-    fromName: "Lauren Ruthford",
-    subject: "Long time no chat",
-    date: "6:12 AM",
     id: 1,
+    fromDate: "2023-01-01",
+    toDate: "2023-01-15",
+    file: "https://www.africau.edu/images/default/sample.pdf.pdf",
   },
   {
-    fromName: "Jordan Firth",
-    subject: "Report Results",
-    date: "4:55 AM",
     id: 2,
+    fromDate: "2023-02-01",
+    toDate: "2023-02-15",
+    file: "https://www.africau.edu/images/default/sample.pdf.pdf",
   },
   {
-    fromName: "Bill Thomas",
-    subject: "The situation",
-    date: "Yesterday",
     id: 3,
+    fromDate: "2023-03-01",
+    toDate: "2023-03-15",
+    file: "https://www.africau.edu/images/default/sample.pdf.pdf",
   },
   {
-    fromName: "Joanne Pollan",
-    subject: "Updated invitation: Swim lessons",
-    date: "Yesterday",
     id: 4,
+    fromDate: "2023-04-01",
+    toDate: "2023-04-15",
+    file: "https://www.africau.edu/images/default/sample.pdf.pdf",
   },
   {
-    fromName: "Andrea Cornerston",
-    subject: "Last minute ask",
-    date: "Yesterday",
     id: 5,
+    fromDate: "2023-05-01",
+    toDate: "2023-05-15",
+    file: "https://www.africau.edu/images/default/sample.pdf.pdf",
   },
   {
-    fromName: "Moe Chamont",
-    subject: "Family Calendar - Version 1",
-    date: "Last Week",
     id: 6,
+    fromDate: "2023-06-01",
+    toDate: "2023-06-15",
+    file: "https://www.africau.edu/images/default/sample.pdf.pdf",
   },
   {
-    fromName: "Kelly Richardson",
-    subject: "Placeholder Headhots",
-    date: "Last Week",
     id: 7,
+    fromDate: "2023-07-01",
+    toDate: "2023-07-15",
+    file: "https://www.africau.edu/images/default/sample.pdf.pdf",
+  },
+  {
+    id: 8,
+    fromDate: "2023-08-01",
+    toDate: "2023-08-15",
+    file: "https://www.africau.edu/images/default/sample.pdf.pdf",
+  },
+  {
+    id: 9,
+    fromDate: "2023-09-01",
+    toDate: "2023-09-15",
+    file: "https://www.africau.edu/images/default/sample.pdf.pdf",
+  },
+  {
+    id: 10,
+    fromDate: "2023-10-01",
+    toDate: "2023-10-15",
+    file: "https://www.africau.edu/images/default/sample.pdf.pdf",
+  },
+  {
+    id: 11,
+    fromDate: "2023-11-01",
+    toDate: "2023-11-15",
+    file: "https://www.africau.edu/images/default/sample.pdf.pdf",
+  },
+  {
+    id: 12,
+    fromDate: "2023-12-01",
+    toDate: "2023-12-15",
+    file: "https://www.africau.edu/images/default/sample.pdf.pdf",
+  },
+  {
+    id: 13,
+    fromDate: "2024-01-01",
+    toDate: "2024-01-15",
+    file: "https://www.africau.edu/images/default/sample.pdf.pdf",
+  },
+  {
+    id: 14,
+    fromDate: "2024-02-01",
+    toDate: "2024-02-15",
+    file: "https://www.africau.edu/images/default/sample.pdf.pdf",
+  },
+  {
+    id: 15,
+    fromDate: "2024-03-01",
+    toDate: "2024-03-15",
+    file: "https://www.africau.edu/images/default/sample.pdf.pdf",
   },
 ];
 
