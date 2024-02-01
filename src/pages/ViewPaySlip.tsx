@@ -22,6 +22,13 @@ function ViewPaySlip() {
     setPaySlip(msg);
   });
 
+  const downloadFile = (uri: string, name: string) => {
+    var link = document.createElement("a");
+    link.download = name;
+    link.href = uri;
+    link.click();
+  };
+
   return (
     <IonPage id="view-payslip-page">
       <IonHeader translucent>
@@ -39,7 +46,13 @@ function ViewPaySlip() {
             <p>{paySlip.toDate}</p>
             <p>{paySlip.file}</p>
             <p>{paySlip.id}</p>
-            <IonButton>Download Payslip</IonButton>
+            <IonButton
+              onClick={() => {
+                downloadFile(paySlip.file, `${paySlip.id}`);
+              }}
+            >
+              Download Payslip
+            </IonButton>
           </>
         ) : (
           <div>PaySlip not found</div>
