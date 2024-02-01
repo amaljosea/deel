@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Message, getMessage } from '../data/messages';
+import { useState } from "react";
+import { PaySlip, getPaySlip } from "../data/paySlip";
 import {
   IonBackButton,
   IonButtons,
@@ -12,22 +12,22 @@ import {
   IonPage,
   IonToolbar,
   useIonViewWillEnter,
-} from '@ionic/react';
-import { personCircle } from 'ionicons/icons';
-import { useParams } from 'react-router';
-import './ViewMessage.css';
+} from "@ionic/react";
+import { personCircle } from "ionicons/icons";
+import { useParams } from "react-router";
+import "./ViewPaySlip.css";
 
-function ViewMessage() {
-  const [message, setMessage] = useState<Message>();
+function ViewPaySlip() {
+  const [payslip, setPaySlip] = useState<PaySlip>();
   const params = useParams<{ id: string }>();
 
   useIonViewWillEnter(() => {
-    const msg = getMessage(parseInt(params.id, 10));
-    setMessage(msg);
+    const msg = getPaySlip(parseInt(params.id, 10));
+    setPaySlip(msg);
   });
 
   return (
-    <IonPage id="view-message-page">
+    <IonPage id="view-payslip-page">
       <IonHeader translucent>
         <IonToolbar>
           <IonButtons slot="start">
@@ -37,15 +37,19 @@ function ViewMessage() {
       </IonHeader>
 
       <IonContent fullscreen>
-        {message ? (
+        {payslip ? (
           <>
             <IonItem>
-              <IonIcon aria-hidden="true" icon={personCircle} color="primary"></IonIcon>
+              <IonIcon
+                aria-hidden="true"
+                icon={personCircle}
+                color="primary"
+              ></IonIcon>
               <IonLabel className="ion-text-wrap">
                 <h2>
-                  {message.fromName}
+                  {payslip.fromName}
                   <span className="date">
-                    <IonNote>{message.date}</IonNote>
+                    <IonNote>{payslip.date}</IonNote>
                   </span>
                 </h2>
                 <h3>
@@ -55,7 +59,7 @@ function ViewMessage() {
             </IonItem>
 
             <div className="ion-padding">
-              <h1>{message.subject}</h1>
+              <h1>{payslip.subject}</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -68,11 +72,11 @@ function ViewMessage() {
             </div>
           </>
         ) : (
-          <div>Message not found</div>
+          <div>PaySlip not found</div>
         )}
       </IonContent>
     </IonPage>
   );
 }
 
-export default ViewMessage;
+export default ViewPaySlip;
