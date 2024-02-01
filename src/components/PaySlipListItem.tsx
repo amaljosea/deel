@@ -1,8 +1,8 @@
-import { IonItem, IonLabel } from "@ionic/react";
-import { PaySlip } from "../data/paySlip";
-import "./PaySlipListItem.css";
-import dayjs from "dayjs";
-import localizedFormat from "dayjs/plugin/localizedFormat";
+import { IonItem, IonLabel } from '@ionic/react';
+import { PaySlip } from '../data/paySlip';
+import './PaySlipListItem.css';
+import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
 
 dayjs.extend(localizedFormat);
 
@@ -16,8 +16,8 @@ const PaySlipListItem: React.FC<PaySlipListItemProps> = ({ paySlip }) => {
       <IonLabel>
         <h2>Payslip {paySlip.id}</h2>
         <p>
-          From {dayjs(paySlip.fromDate).format("LL")} to{" "}
-          {dayjs(paySlip.toDate).format("LL")}
+          From {dayjs(paySlip.fromDate).format('LL')} to{' '}
+          {dayjs(paySlip.toDate).format('LL')}
         </p>
       </IonLabel>
     </IonItem>

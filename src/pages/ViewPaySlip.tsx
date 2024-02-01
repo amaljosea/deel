@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { PaySlip, getPaySlip } from "../data/paySlip";
+import { useState } from 'react';
+import { PaySlip, getPaySlip } from '../data/paySlip';
 import {
   IonBackButton,
   IonButton,
@@ -9,9 +9,13 @@ import {
   IonPage,
   IonToolbar,
   useIonViewWillEnter,
-} from "@ionic/react";
-import { useParams } from "react-router";
-import "./ViewPaySlip.css";
+} from '@ionic/react';
+import { useParams } from 'react-router';
+import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+import './ViewPaySlip.css';
+
+dayjs.extend(localizedFormat);
 
 function ViewPaySlip() {
   const [paySlip, setPaySlip] = useState<PaySlip>();
@@ -23,29 +27,29 @@ function ViewPaySlip() {
   });
 
   const downloadFile = (uri: string, name: string) => {
-    var link = document.createElement("a");
+    var link = document.createElement('a');
     link.download = name;
     link.href = uri;
     link.click();
   };
 
   return (
-    <IonPage id="view-payslip-page">
+    <IonPage id='view-payslip-page'>
       <IonHeader translucent>
         <IonToolbar>
-          <IonButtons slot="start">
-            <IonBackButton text="Pay Slips" defaultHref="/home"></IonBackButton>
+          <IonButtons slot='start'>
+            <IonBackButton text='Pay Slips' defaultHref='/home'></IonBackButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-
-      <IonContent fullscreen>
+      <IonContent className='ion-padding' fullscreen>
         {paySlip ? (
-          <>
-            <p>{paySlip.fromDate}</p>
-            <p>{paySlip.toDate}</p>
-            <p>{paySlip.file}</p>
-            <p>{paySlip.id}</p>
+          <div>
+            <h2>Payslip {paySlip.id}</h2>
+            <p>
+              From {dayjs(paySlip.fromDate).format('LL')} to{' '}
+              {dayjs(paySlip.toDate).format('LL')}
+            </p>
             <IonButton
               onClick={() => {
                 downloadFile(paySlip.file, `${paySlip.id}`);
@@ -53,7 +57,7 @@ function ViewPaySlip() {
             >
               Download Payslip
             </IonButton>
-          </>
+          </div>
         ) : (
           <div>PaySlip not found</div>
         )}

@@ -1,6 +1,6 @@
-import PaySlipListItem from "../components/PaySlipListItem";
-import { useState } from "react";
-import { PaySlip, getPaySlips } from "../data/paySlip";
+import PaySlipListItem from '../components/PaySlipListItem';
+import { useState } from 'react';
+import { PaySlip, getPaySlips } from '../data/paySlip';
 import {
   IonContent,
   IonHeader,
@@ -11,8 +11,8 @@ import {
   IonTitle,
   IonToolbar,
   useIonViewWillEnter,
-} from "@ionic/react";
-import "./Home.css";
+} from '@ionic/react';
+import './Home.css';
 
 const Home: React.FC = () => {
   const [paySlips, setPaySlips] = useState<PaySlip[]>([]);
@@ -29,20 +29,20 @@ const Home: React.FC = () => {
   };
 
   return (
-    <IonPage id="home-page">
+    <IonPage id='home-page'>
       <IonHeader>
         <IonToolbar>
           <IonTitle>Pay Slips</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonRefresher slot="fixed" onIonRefresh={refresh}>
+        <IonRefresher slot='fixed' onIonRefresh={refresh}>
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
 
-        <IonHeader collapse="condense">
+        <IonHeader collapse='condense'>
           <IonToolbar>
-            <IonTitle size="large">Pay Slips</IonTitle>
+            <IonTitle size='large'>Pay Slips</IonTitle>
           </IonToolbar>
         </IonHeader>
 
