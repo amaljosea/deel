@@ -16,12 +16,28 @@ import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import './ViewPaySlip.css';
 import { documentAttachOutline } from 'ionicons/icons';
+import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
 
 dayjs.extend(localizedFormat);
 
 function ViewPaySlip() {
   const [paySlip, setPaySlip] = useState<PaySlip>();
   const params = useParams<{ id: string }>();
+
+  const writeSecretFile = async () => {
+    try {
+      const file = await Filesystem.writeFile({
+        path: 'secrets/text.txt',
+        data: 'This is a test',
+        directory: Directory.Documents,
+        encoding: Encoding.UTF8,
+        recursive: true,
+      });
+      alert(file.uri);
+    } catch (e) {
+      alert(e);
+    }
+  };
 
   useIonViewWillEnter(() => {
     const msg = getPaySlip(parseInt(params.id, 10));
@@ -59,7 +75,8 @@ function ViewPaySlip() {
             </p>
             <IonButton
               onClick={() => {
-                downloadFile(paySlip.file, `${paySlip.id}`);
+                writeSecretFile();
+                // downloadFile(paySlip.file, `${paySlip.id}`);
               }}
             >
               Download Payslip
