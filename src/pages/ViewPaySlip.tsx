@@ -14,25 +14,29 @@ import {
 import { useParams } from 'react-router';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
-import './ViewPaySlip.css';
 import { documentAttachOutline } from 'ionicons/icons';
-
-dayjs.extend(localizedFormat);
 
 import { usePayslipDownload } from '../hooks/usePayslipDownload';
 import { PdfViewer } from '../components/PdfViewer';
 
+dayjs.extend(localizedFormat);
+import './ViewPaySlip.css';
+
 function ViewPaySlip() {
   const [paySlip, setPaySlip] = useState<PaySlip>();
+  const [initialLoading, setInitialLoading] = useState(true);
   const params = useParams<{ id: string }>();
 
-  const { download, fileBase64, initialLoading } = usePayslipDownload(
-    paySlip?.file || ''
-  );
+  const {
+    download,
+    fileBase64,
+    initialLoading: initialFileLoading,
+  } = usePayslipDownload(paySlip?.file || '');
 
   useIonViewWillEnter(() => {
-    const msg = getPaySlip(parseInt(params.id, 10));
-    setPaySlip(msg);
+    const ps = getPaySlip(parseInt(params.id, 10));
+    setPaySlip(ps);
+    setInitialLoading(false);
   });
 
   return (
@@ -57,14 +61,14 @@ function ViewPaySlip() {
               From {dayjs(paySlip.fromDate).format('LL')} to{' '}
               {dayjs(paySlip.toDate).format('LL')}
             </p>
-            {initialLoading && <p>Loading...</p>}
-            {!initialLoading && !fileBase64 && (
+            {initialFileLoading && <p>Loading...</p>}
+            {!initialFileLoading && !fileBase64 && (
               <IonButton onClick={download}>Download Payslip</IonButton>
             )}
             {!!fileBase64 && <PdfViewer fileBase64={fileBase64} />}
           </div>
         ) : (
-          <div>PaySlip not found</div>
+          <>{initialLoading ? <>Loading...</> : <div>PaySlip not found</div>}</>
         )}
       </IonContent>
     </IonPage>

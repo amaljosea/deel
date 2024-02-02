@@ -7,14 +7,14 @@ export const usePayslipDownload = (fileName: string) => {
   const [initialLoading, setInitailLoading] = useState(true);
 
   useEffect(() => {
-    const start = async () => {
+    const startInitalLoad = async () => {
       const fileBase64 = await getFileBase64FromStorage(fileName);
       setFileBase64(fileBase64);
       setInitailLoading(false);
     };
 
     if (fileName) {
-      start();
+      startInitalLoad();
     }
   }, [fileName]);
 

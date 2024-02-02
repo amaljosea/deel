@@ -8,8 +8,11 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 
 export const PdfViewer = ({ fileBase64 }: { fileBase64: string | Blob }) => {
   return (
-    <Document file={fileBase64}>
-      <Page scale={0.5} pageNumber={1} />
-    </Document>
+    <>
+      <p>Payslip downloaded!</p>
+      <Document file={fileBase64}>
+        <Page scale={0.5} pageNumber={1} />
+      </Document>
+    </>
   );
 };
