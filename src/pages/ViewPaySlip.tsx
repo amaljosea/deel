@@ -6,6 +6,7 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
+  IonIcon,
   IonPage,
   IonToolbar,
   useIonViewWillEnter,
@@ -14,6 +15,7 @@ import { useParams } from 'react-router';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import './ViewPaySlip.css';
+import { documentAttachOutline } from 'ionicons/icons';
 
 dayjs.extend(localizedFormat);
 
@@ -45,6 +47,11 @@ function ViewPaySlip() {
       <IonContent className='ion-padding' fullscreen>
         {paySlip ? (
           <div>
+            <IonIcon
+              className='document-icon'
+              icon={documentAttachOutline}
+              size='large'
+            />
             <h2>Payslip {paySlip.id}</h2>
             <p>
               From {dayjs(paySlip.fromDate).format('LL')} to{' '}

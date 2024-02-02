@@ -1,8 +1,9 @@
-import { IonItem, IonLabel } from '@ionic/react';
+import { IonAvatar, IonIcon, IonItem, IonLabel } from '@ionic/react';
 import { PaySlip } from '../data/paySlip';
 import './PaySlipListItem.css';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
+import { documentAttachOutline, logoIonic } from 'ionicons/icons';
 
 dayjs.extend(localizedFormat);
 
@@ -13,6 +14,11 @@ interface PaySlipListItemProps {
 const PaySlipListItem: React.FC<PaySlipListItemProps> = ({ paySlip }) => {
   return (
     <IonItem routerLink={`/payslip/${paySlip.id}`} detail={false}>
+      <IonIcon
+        className='document-icon'
+        icon={documentAttachOutline}
+        size='large'
+      />
       <IonLabel>
         <h2>Payslip {paySlip.id}</h2>
         <p>
