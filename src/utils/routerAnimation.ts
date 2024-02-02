@@ -1,6 +1,6 @@
 import { createAnimation } from '@ionic/react';
 
-export const routerAnimation = (baseEl: HTMLElement, opts?: any) => {
+export const routerAnimation = (_baseEl: HTMLElement, opts?: any) => {
   const enteringAnimation = createAnimation()
     .addElement(opts.enteringEl)
     .fromTo('opacity', '0', '1')

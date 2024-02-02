@@ -14,26 +14,30 @@ import {
 import { useParams } from 'react-router';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
-import './ViewPaySlip.css';
 import { documentAttachOutline } from 'ionicons/icons';
 
+import { usePayslipDownload } from '../hooks/usePayslipDownload';
+import { PdfViewer } from '../components/PdfViewer';
+
 dayjs.extend(localizedFormat);
+import './ViewPaySlip.css';
 
 function ViewPaySlip() {
   const [paySlip, setPaySlip] = useState<PaySlip>();
+  const [initialLoading, setInitialLoading] = useState(true);
   const params = useParams<{ id: string }>();
 
-  useIonViewWillEnter(() => {
-    const msg = getPaySlip(parseInt(params.id, 10));
-    setPaySlip(msg);
-  });
+  const {
+    download,
+    fileBase64,
+    initialLoading: initialFileLoading,
+  } = usePayslipDownload(paySlip?.file || '');
 
-  const downloadFile = (uri: string, name: string) => {
-    var link = document.createElement('a');
-    link.download = name;
-    link.href = uri;
-    link.click();
-  };
+  useIonViewWillEnter(() => {
+    const ps = getPaySlip(parseInt(params.id, 10));
+    setPaySlip(ps);
+    setInitialLoading(false);
+  });
 
   return (
     <IonPage id='view-payslip-page'>
@@ -45,29 +49,27 @@ function ViewPaySlip() {
         </IonToolbar>
       </IonHeader>
       <IonContent className='ion-padding' fullscreen>
-        {paySlip ? (
-          <div className='content-container'>
-            <IonIcon
-              className='document-icon'
-              icon={documentAttachOutline}
-              size='large'
-            />
-            <h2>Payslip {paySlip.id}</h2>
-            <p>
-              From {dayjs(paySlip.fromDate).format('LL')} to{' '}
-              {dayjs(paySlip.toDate).format('LL')}
-            </p>
-            <IonButton
-              onClick={() => {
-                downloadFile(paySlip.file, `${paySlip.id}`);
-              }}
-            >
-              Download Payslip
-            </IonButton>
-          </div>
-        ) : (
-          <div>PaySlip not found</div>
-        )}
+        <div className='content-container'>
+          {paySlip ? (
+            <>
+              <IonIcon icon={documentAttachOutline} size='large' />
+              <h2>Payslip {paySlip.id}</h2>
+              <p>
+                From {dayjs(paySlip.fromDate).format('LL')} to{' '}
+                {dayjs(paySlip.toDate).format('LL')}
+              </p>
+              {initialFileLoading && <p>Loading...</p>}
+              {!initialFileLoading && !fileBase64 && (
+                <IonButton onClick={download}>Download Payslip</IonButton>
+              )}
+              {!!fileBase64 && <PdfViewer fileBase64={fileBase64} />}
+            </>
+          ) : (
+            <>
+              {initialLoading ? <>Loading...</> : <div>PaySlip not found</div>}
+            </>
+          )}
+        </div>
       </IonContent>
     </IonPage>
   );

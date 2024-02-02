@@ -1,9 +1,9 @@
-import { IonAvatar, IonIcon, IonItem, IonLabel } from '@ionic/react';
+import { IonIcon, IonItem, IonLabel } from '@ionic/react';
 import { PaySlip } from '../data/paySlip';
 import './PaySlipListItem.css';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
-import { documentAttachOutline, logoIonic } from 'ionicons/icons';
+import { documentAttachOutline } from 'ionicons/icons';
 
 dayjs.extend(localizedFormat);
 

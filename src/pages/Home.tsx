@@ -12,7 +12,6 @@ import {
   IonToolbar,
   useIonViewWillEnter,
 } from '@ionic/react';
-import './Home.css';
 
 const Home: React.FC = () => {
   const [paySlips, setPaySlips] = useState<PaySlip[]>([]);
