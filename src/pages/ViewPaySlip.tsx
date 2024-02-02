@@ -49,27 +49,27 @@ function ViewPaySlip() {
         </IonToolbar>
       </IonHeader>
       <IonContent className='ion-padding' fullscreen>
-        {paySlip ? (
-          <div className='content-container'>
-            <IonIcon
-              className='document-icon'
-              icon={documentAttachOutline}
-              size='large'
-            />
-            <h2>Payslip {paySlip.id}</h2>
-            <p>
-              From {dayjs(paySlip.fromDate).format('LL')} to{' '}
-              {dayjs(paySlip.toDate).format('LL')}
-            </p>
-            {initialFileLoading && <p>Loading...</p>}
-            {!initialFileLoading && !fileBase64 && (
-              <IonButton onClick={download}>Download Payslip</IonButton>
-            )}
-            {!!fileBase64 && <PdfViewer fileBase64={fileBase64} />}
-          </div>
-        ) : (
-          <>{initialLoading ? <>Loading...</> : <div>PaySlip not found</div>}</>
-        )}
+        <div className='content-container'>
+          {paySlip ? (
+            <>
+              <IonIcon icon={documentAttachOutline} size='large' />
+              <h2>Payslip {paySlip.id}</h2>
+              <p>
+                From {dayjs(paySlip.fromDate).format('LL')} to{' '}
+                {dayjs(paySlip.toDate).format('LL')}
+              </p>
+              {initialFileLoading && <p>Loading...</p>}
+              {!initialFileLoading && !fileBase64 && (
+                <IonButton onClick={download}>Download Payslip</IonButton>
+              )}
+              {!!fileBase64 && <PdfViewer fileBase64={fileBase64} />}
+            </>
+          ) : (
+            <>
+              {initialLoading ? <>Loading...</> : <div>PaySlip not found</div>}
+            </>
+          )}
+        </div>
       </IonContent>
     </IonPage>
   );
