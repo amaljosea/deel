@@ -1,5 +1,6 @@
 import { Document, Page, pdfjs } from 'react-pdf';
-
+import 'react-pdf/dist/Page/TextLayer.css';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url
@@ -8,7 +9,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 export const PdfViewer = ({ fileBase64 }: { fileBase64: string | Blob }) => {
   return (
     <Document file={fileBase64}>
-      <Page pageNumber={1} />
+      <Page scale={0.5} pageNumber={1} />
     </Document>
   );
 };
