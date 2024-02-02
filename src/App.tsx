@@ -25,7 +25,7 @@ import './theme/variables.css';
 
 setupIonicReact();
 
-import { routerAnimation } from './utils/RouterAnimation';
+import { routerAnimation } from './utils/routerAnimation';
 
 const App: React.FC = () => (
   <IonApp>
