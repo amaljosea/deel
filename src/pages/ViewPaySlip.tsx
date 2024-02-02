@@ -46,7 +46,7 @@ function ViewPaySlip() {
       </IonHeader>
       <IonContent className='ion-padding' fullscreen>
         {paySlip ? (
-          <div>
+          <div className='content-container'>
             <IonIcon
               className='document-icon'
               icon={documentAttachOutline}
