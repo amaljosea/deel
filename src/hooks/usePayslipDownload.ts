@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getFileBase64FromStorage } from '../utils/getFileBase64FromStorage';
-import { putFileBase64ToStorage } from '../utils/putFileBase64ToStorage';
+import { getFileFromStorage } from '../utils/getFileFromStorage';
+import { putFileToStorage } from '../utils/putFileToStorage';
 
 export const usePayslipDownload = (fileName: string) => {
   const [fileBase64, setFileBase64] = useState<Blob | string | null>(null);
@@ -8,7 +8,7 @@ export const usePayslipDownload = (fileName: string) => {
 
   useEffect(() => {
     const startInitalLoad = async () => {
-      const fileBase64 = await getFileBase64FromStorage(fileName);
+      const fileBase64 = await getFileFromStorage(fileName);
       setFileBase64(fileBase64);
       setInitailLoading(false);
     };
@@ -19,8 +19,8 @@ export const usePayslipDownload = (fileName: string) => {
   }, [fileName]);
 
   const download = async () => {
-    await putFileBase64ToStorage(fileName);
-    const fileBase64 = await getFileBase64FromStorage(fileName);
+    await putFileToStorage(fileName);
+    const fileBase64 = await getFileFromStorage(fileName);
     setFileBase64(fileBase64);
   };
 

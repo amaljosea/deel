@@ -1,6 +1,6 @@
 import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
 
-export const getFileBase64FromStorage = async (fileName: string) => {
+export const getFileFromStorage = async (fileName: string) => {
   const result = await Filesystem.readdir({
     path: '',
     directory: Directory.Documents,

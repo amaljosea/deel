@@ -1,6 +1,6 @@
 import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
 
-export const putFileBase64ToStorage = async (fileName: string) => {
+export const putFileToStorage = async (fileName: string) => {
   const response = await fetch(`payslips/${fileName}`);
   const arrayBuffer = await response.arrayBuffer();
   const base64String = btoa(
