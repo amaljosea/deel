@@ -13,3 +13,8 @@
 ### Run e2e test
 
 - `npm run test.e2e`
+
+### Build and sync
+
+- `npm run build`
+- `npx cap sync`
